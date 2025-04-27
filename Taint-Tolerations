@@ -1,0 +1,20 @@
+
+TaintNode
+
+kubectl taint node i-0140f626e7fe55726 app=myapp:NoSchedule
+
+Tolerations
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "app"
+    operator: "Equal"
+    value: "myapp"
+    effect: "NoSchedule"
