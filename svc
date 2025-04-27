@@ -10,3 +10,22 @@ spec:
   - protocol: TCP
     port: 80          # This is the port exposed to the outside world
     targetPort: 3000  # This is your container's port
+
+
+
+
+
+In the DNS Management page:
+
+Scroll down to Records section.
+
+Click "Add".
+
+Type: Select CNAME.
+
+Host: Put www
+
+Points to: paste your LoadBalancer DNS
+(example: a5de94f9fc4064bceb8a9eea521a8e10-676933353.us-east-1.elb.amazonaws.com)
+
+TTL: Keep it Default (or 1 Hour).
