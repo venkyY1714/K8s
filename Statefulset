@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx
+spec:
+  serviceName: "nginx"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+-------------------------------------------------------------------------------------
+
+
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: web-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data
+--------------------------------------------------------------------------
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: web-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+--------------------------------------------------------------------------------
+
+🔥 Where to create /mnt/data:
+On the worker node, where the StatefulSet pods will be scheduled.
+
+Each worker node that may run the pod must have this directory (/mnt/data) created on it.
