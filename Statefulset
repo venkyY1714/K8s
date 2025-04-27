@@ -51,3 +51,10 @@ spec:
 On the worker node, where the StatefulSet pods will be scheduled.
 
 Each worker node that may run the pod must have this directory (/mnt/data) created on it.
+
+
+
+⚡ Note:
+If you have multiple worker nodes and you want your pod to run on a specific node (where the /mnt/data directory is created), you need to use node affinity or taints/tolerations.
+
+If you have multiple nodes and they don’t have the /mnt/data directory, the pod will fail to start because Kubernetes won’t find the required directory on those nodes.
