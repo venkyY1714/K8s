@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: myapp-v1
-          image: surya9961/k8sdep:v1
+          image: surya9961/k8sdep:v2
           ports:
             - containerPort: 80  # Port 80
