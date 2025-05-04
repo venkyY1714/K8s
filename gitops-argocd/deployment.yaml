@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-v1
+  namespace: default
+spec:
+  replicas: 4  # Number of replicas
+  selector:
+    matchLabels:
+      app: myapp-v1
+  template:
+    metadata:
+      labels:
+        app: myapp-v1
+    spec:
+      containers:
+        - name: myapp-v1
+          image: surya9961/k8sdep:v1
+          ports:
+            - containerPort: 80  # Port 80
