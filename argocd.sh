@@ -36,3 +36,9 @@ echo "Then open: https://localhost:8080"
 echo ""
 echo "🧑 Username: admin"
 echo "🔐 Password: $ADMIN_PASSWORD"
+
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+
+echo "Use below load balancer endpoint below to access the argocd"
+kubectl get svc -n argocd
+
