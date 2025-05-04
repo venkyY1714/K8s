@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: myapp-v1
+  name: myapp-v1
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myapp-v1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: myapp-v1
+    spec:
+      containers:
+      - image: surya9961/k8sdep:v1
