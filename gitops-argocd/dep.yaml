@@ -1,21 +1,18 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  creationTimestamp: null
-  labels:
-    app: myapp-v1
   name: myapp-v1
+  namespace: argocd
 spec:
-  replicas: 4
-  selector:
-    matchLabels:
-      app: myapp-v1
-  strategy: {}
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: myapp-v1
-    spec:
-      containers:
-      - image: surya9961/k8sdep:v1
+  project: default
+  source:
+    repoURL: https://github.com/prudhvisurya996/K8s
+    targetRevision: main
+    path: gitops-argocd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
